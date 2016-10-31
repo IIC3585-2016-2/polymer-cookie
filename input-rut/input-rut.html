@@ -54,18 +54,13 @@ It&#39;s an input, which validates if the rut is correct
       validateRut: function() {
         var largo = this.prop1.length;
         var numbers = [9, 8, 7, 6, 5, 4, 9, 8, 7, 6]
-        console.log(this.prop1.length);
         this.prop2 = ""
         if (largo > 7) {
-          console.log("Largo mayor a 7")
           var j = 0;
           var sum = 0;
           for (var i = largo-2; i >= 0; i--) {
-            console.log(this.prop1.charAt(i));
             sum += (this.prop1.charAt(i) * numbers[j++]);
-            console.log(sum);
             var resto = sum%11;
-            console.log(resto);
             if (resto == this.prop1.charAt(largo-1)){
               this.prop2 = "Rut valido"
             }
