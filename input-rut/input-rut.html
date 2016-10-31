@@ -1,0 +1,85 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`input-rut`
+It&#39;s an input, which validates if the rut is correct
+
+@demo demo/index.html
+-->
+
+<dom-module id="input-rut">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      input {
+        padding:8px;
+        display:block;
+        border:none;
+        border-bottom:1px solid #808080;
+        width:60%
+      }
+      h2{
+        border: none;
+        font-size: 12px;
+        display: inline-block;
+      }
+    </style>
+    <div>
+      <label>Rut</label>
+      <input value="{{prop1::input}}" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 75 || event.charCode == 107'/>
+      <h2>[[prop2]]</h2>
+
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'input-rut',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: '',
+          observer: 'validateRut'
+        },
+        prop2: {
+          type: String,
+          value: 'Ingresar rut'
+        }
+      },
+
+      validateRut: function() {
+        var largo = this.prop1.length;
+        var numbers = [9, 8, 7, 6, 5, 4, 9, 8, 7, 6]
+        console.log(this.prop1.length);
+        this.prop2 = ""
+        if (largo > 7) {
+          console.log("Largo mayor a 7")
+          var j = 0;
+          var sum = 0;
+          for (var i = largo-2; i >= 0; i--) {
+            console.log(this.prop1.charAt(i));
+            sum += (this.prop1.charAt(i) * numbers[j++]);
+            console.log(sum);
+            var resto = sum%11;
+            console.log(resto);
+            if (resto == this.prop1.charAt(largo-1)){
+              this.prop2 = "Rut valido"
+            }
+            else if (resto == 10){
+              if (this.prop1.charAt(largo-1) == 'k' || this.prop1.charAt(largo-1) == 'K'){
+                this.prop2 = "Rut valido"
+              }
+            }
+            else {
+              this.prop2 = "Rut no valido"
+            }
+          }
+        }
+      },
+    });
+  </script>
+</dom-module>
