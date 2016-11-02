@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="/src/my-dolar.html">
+<link rel="import" href="/src/my-uf.html">
+<link rel="import" href="/src/my-euro.html">
+<link rel="import" href="/src/my-utm.html">
+
+<dom-module id="my-valores-financieros">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+
+        padding: 16px;
+      }
+    </style>
+    <my-uf></my-uf>
+    <my-dolar></my-dolar>
+    <my-euro></my-euro>
+    <my-utm></my-utm>
+
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'my-valores-financieros',
+
+    });
+  </script>
+</dom-module>

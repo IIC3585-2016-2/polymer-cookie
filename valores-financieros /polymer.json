@@ -1,0 +1,21 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/my-app.html",
+  "fragments": [
+    "src/my-view404.html",
+    "src/my-valores-financieros.html",
+    "src/my-dolar.html",
+    "src/my-uf.html",
+    "src/my-euro.html",
+    "src/my-utm.html"
+  ],
+  "sourceGlobs": [
+   "src/**/*",
+   "images/**/*",
+   "bower.json"
+  ],
+  "includeDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}

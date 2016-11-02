@@ -1,0 +1,111 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/google-chart/google-chart.html">
+
+<dom-module id="my-uf">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+
+        padding: 16px;
+      }
+    </style>
+
+    <!--Valor UF hoy -->
+    <iron-ajax
+    auto
+    url="http://mindicador.cl/api/uf"
+    handle-as="json"
+    on-response="fetchUF"></iron-ajax>
+
+    <google-chart
+      id="line-chart"
+      type="line"
+      options='{"title": "Valor UF"}'
+      cols='[{"label": "Dia", "type": "string"},{"label": "Valor", "type": "number"}]'
+      rows='{{dataUF}}'>
+    </google-chart>
+
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'my-uf',
+      properties: {
+        //Props UF
+      fuf0: { type:String },
+      vuf0: { type: Number },
+      fuf1: { type:String },
+      vuf1: { type: Number },
+      fuf2: { type:String },
+      vuf2: { type: Number },
+      fuf3: { type:String },
+      vuf3: { type: Number },
+      fuf4: { type:String },
+      vuf4: { type: Number },
+      fuf5: { type:String },
+      vuf5: { type: Number },
+      fuf6:{ type:String },
+      vuf6: { type: Number },
+      rowuf: {
+        type: Object,
+      },
+      row0uf: {
+        type: Array,
+      },
+      row1uf: {
+        type: Array,
+      },
+      row2uf: {
+        type: Array,
+      },
+      row3uf: {
+        type: Array,
+      },
+      row4uf: {
+        type: Array,
+      },
+      row5uf: {
+        type: Array,
+      },
+      row6uf: {
+        type: Array,
+      },
+      dataUF: {
+        value: [],
+        computed: 'computeUF(row0uf,row1uf,row2uf,row3uf,row4uf,row5uf,row6uf)'
+      },
+    },
+    fetchUF: function(data) {
+      this.rowuf = data.detail.__data__.response.serie;
+      this.fuf0 = this.rowuf["0"].fecha;
+      this.vuf0 = this.rowuf["0"].valor;
+      this.fuf1 = this.rowuf["1"].fecha;
+      this.vuf1 = this.rowuf["1"].valor;
+      this.fuf2 = this.rowuf["2"].fecha;
+      this.vuf2 = this.rowuf["2"].valor;
+      this.fuf3 = this.rowuf["3"].fecha;
+      this.vuf3 = this.rowuf["3"].valor;
+      this.fuf4 = this.rowuf["4"].fecha;
+      this.vuf4 = this.rowuf["4"].valor;
+      this.fuf5 = this.rowuf["5"].fecha;
+      this.vuf5 = this.rowuf["5"].valor;
+      this.fuf6 = this.rowuf["6"].fecha;
+      this.vuf6 = this.rowuf["6"].valor;
+
+      this.row0uf = [this.fuf0,this.vuf0];
+      this.row1uf = [this.fuf1,this.vuf1];
+      this.row2uf = [this.fuf2,this.vuf2];
+      this.row3uf = [this.fuf3,this.vuf3];
+      this.row4uf = [this.fuf4,this.vuf4];
+      this.row5uf = [this.fuf5,this.vuf5];
+      this.row6uf = [this.fuf6,this.vuf6];
+    },
+    computeUF: function(row0uf, row1uf, row2uf, row3uf, row4uf, row5uf, row6uf) {
+      return [this.row0uf, this.row1uf, this.row2uf, this.row3uf, this.row4uf, this.row5uf, this.row6uf];
+    },
+    });
+  </script>
+</dom-module>

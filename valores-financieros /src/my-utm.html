@@ -1,0 +1,111 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/google-chart/google-chart.html">
+
+<dom-module id="my-utm">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+
+        padding: 16px;
+      }
+    </style>
+
+    <!--Valor Euro hoy -->
+    <iron-ajax
+    auto
+    url="http://mindicador.cl/api/utm"
+    handle-as="json"
+    on-response="fechaUTM"></iron-ajax>
+
+    <google-chart
+      id="line-chart"
+      type="line"
+      options='{"title": "Valor UTM"}'
+      cols='[{"label": "Dia", "type": "string"},{"label": "Valor", "type": "number"}]'
+      rows='{{dataUTM}}'>
+    </google-chart>
+
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'my-utm',
+      properties: {
+      fd0: { type:String },
+      vd0: { type: Number },
+      fd1: { type:String },
+      vd1: { type: Number },
+      fd2: { type:String },
+      vd2: { type: Number },
+      fd3: { type:String },
+      vd3: { type: Number },
+      fd4: { type:String },
+      vd4: { type: Number },
+      fd5: { type:String },
+      vd5: { type: Number },
+      fd6:{ type:String },
+      vd6: { type: Number },
+      row: {
+        type: Object,
+      },
+      row0: {
+        type: Array,
+      },
+      row1: {
+        type: Array,
+      },
+      row2: {
+        type: Array,
+      },
+      row3: {
+        type: Array,
+      },
+      row4: {
+        type: Array,
+      },
+      row5: {
+        type: Array,
+      },
+      row6: {
+        type: Array,
+      },
+      dataUTM: {
+        value: [],
+        computed: 'computeData(row0,row1,row2,row3,row4,row5,row6)'
+
+      },
+    },
+    fechaUTM: function(data) {
+      this.row = data.detail.root.__data__.response.serie;
+      this.fd0 = this.row["0"].fecha;
+      this.vd0 = this.row["0"].valor;
+      this.fd1 = this.row["1"].fecha;
+      this.vd1 = this.row["1"].valor;
+      this.fd2 = this.row["2"].fecha;
+      this.vd2 = this.row["2"].valor;
+      this.fd3 = this.row["3"].fecha;
+      this.vd3 = this.row["3"].valor;
+      this.fd4 = this.row["4"].fecha;
+      this.vd4 = this.row["4"].valor;
+      this.fd5 = this.row["5"].fecha;
+      this.vd5 = this.row["5"].valor;
+      this.fd6 = this.row["6"].fecha;
+      this.vd6 = this.row["6"].valor;
+
+      this.row0 = [this.fd0,this.vd0];
+      this.row1 = [this.fd1,this.vd1];
+      this.row2 = [this.fd2,this.vd2];
+      this.row3 = [this.fd3,this.vd3];
+      this.row4 = [this.fd4,this.vd4];
+      this.row5 = [this.fd5,this.vd5];
+      this.row6 = [this.fd6,this.vd6];
+    },
+    computeData: function(row0, row1, row2, row3, row4, row5, row6) {
+      return [this.row0, this.row1, this.row2, this.row3, this.row4, this.row5, this.row6];
+    }
+    });
+  </script>
+</dom-module>
