@@ -80,19 +80,20 @@
     },
     fetchUF: function(data) {
       this.rowuf = data.detail.__data__.response.serie;
-      this.fuf0 = this.rowuf["0"].fecha;
+      this.fuf0 = this.rowuf["0"].fecha.split('T')[0];
+
       this.vuf0 = this.rowuf["0"].valor;
-      this.fuf1 = this.rowuf["1"].fecha;
+      this.fuf1 = this.rowuf["1"].fecha.split('T')[0];
       this.vuf1 = this.rowuf["1"].valor;
-      this.fuf2 = this.rowuf["2"].fecha;
+      this.fuf2 = this.rowuf["2"].fecha.split('T')[0];
       this.vuf2 = this.rowuf["2"].valor;
-      this.fuf3 = this.rowuf["3"].fecha;
+      this.fuf3 = this.rowuf["3"].fecha.split('T')[0];
       this.vuf3 = this.rowuf["3"].valor;
-      this.fuf4 = this.rowuf["4"].fecha;
+      this.fuf4 = this.rowuf["4"].fecha.split('T')[0];
       this.vuf4 = this.rowuf["4"].valor;
-      this.fuf5 = this.rowuf["5"].fecha;
+      this.fuf5 = this.rowuf["5"].fecha.split('T')[0];
       this.vuf5 = this.rowuf["5"].valor;
-      this.fuf6 = this.rowuf["6"].fecha;
+      this.fuf6 = this.rowuf["6"].fecha.split('T')[0];
       this.vuf6 = this.rowuf["6"].valor;
 
       this.row0uf = [this.fuf0,this.vuf0];

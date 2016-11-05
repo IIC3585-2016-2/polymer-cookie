@@ -80,19 +80,19 @@
     },
     fechaEuro: function(data) {
       this.row = data.detail.root.__data__.response.serie;
-      this.fd0 = this.row["0"].fecha;
+      this.fd0 = this.row["0"].fecha.split('T')[0];
       this.vd0 = this.row["0"].valor;
-      this.fd1 = this.row["1"].fecha;
+      this.fd1 = this.row["1"].fecha.split('T')[0];
       this.vd1 = this.row["1"].valor;
-      this.fd2 = this.row["2"].fecha;
+      this.fd2 = this.row["2"].fecha.split('T')[0];
       this.vd2 = this.row["2"].valor;
-      this.fd3 = this.row["3"].fecha;
+      this.fd3 = this.row["3"].fecha.split('T')[0];
       this.vd3 = this.row["3"].valor;
-      this.fd4 = this.row["4"].fecha;
+      this.fd4 = this.row["4"].fecha.split('T')[0];
       this.vd4 = this.row["4"].valor;
-      this.fd5 = this.row["5"].fecha;
+      this.fd5 = this.row["5"].fecha.split('T')[0];
       this.vd5 = this.row["5"].valor;
-      this.fd6 = this.row["6"].fecha;
+      this.fd6 = this.row["6"].fecha.split('T')[0];
       this.vd6 = this.row["6"].valor;
 
       this.row0 = [this.fd0,this.vd0];
