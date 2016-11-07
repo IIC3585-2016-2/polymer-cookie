@@ -1,0 +1,80 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!--
+`my-input-rut`
+It&#39;s an input, which validates if the verifier digi rut is correct
+
+@demo demo/index.html
+-->
+
+<dom-module id="my-input-rut">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      input {
+        padding:8px;
+        display:block;
+        border:none;
+        border-bottom:1px solid #808080;
+        width:60%
+      }
+      h2{
+        border: none;
+        font-size: 12px;
+        display: inline-block;
+      }
+    </style>
+    <div>
+      <label>Rut</label>
+      <input value="{{rut::input}}" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 75 || event.charCode == 107'/>
+      <h2>[[prop]]</h2>
+
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'my-input-rut',
+
+      properties: {
+        rut: {
+          type: String,
+          value: '',
+          observer: 'validateRut'
+        },
+        prop: {
+          type: String,
+          value: 'Ingresar rut'
+        }
+      },
+
+      validateRut: function() {
+        var largo = this.rut.length;
+        var numbers = [9, 8, 7, 6, 5, 4, 9, 8, 7, 6]
+        this.prop = ""
+        if (largo > 7) {
+          var j = 0;
+          var sum = 0;
+          for (var i = largo-2; i >= 0; i--) {
+            sum += (this.rut.charAt(i) * numbers[j++]);
+            var resto = sum%11;
+            if (resto == this.rut.charAt(largo-1)){
+              this.prop = "Rut valido"
+            }
+            else if (resto == 10){
+              if (this.rut.charAt(largo-1) == 'k' || this.rut.charAt(largo-1) == 'K'){
+                this.prop = "Rut valido"
+              }
+            }
+            else {
+              this.prop = "Rut no valido"
+            }
+          }
+        }
+      },
+    });
+  </script>
+</dom-module>

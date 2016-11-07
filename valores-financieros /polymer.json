@@ -7,7 +7,9 @@
     "src/my-dolar.html",
     "src/my-uf.html",
     "src/my-euro.html",
-    "src/my-utm.html"
+    "src/my-utm.html",
+    "src/my-input-rut.html",
+    "src/my-converter-to-dolar.html"
   ],
   "sourceGlobs": [
    "src/**/*",

@@ -1,6 +1,6 @@
 {
   "name": "input-rut",
-  "description": "It&#39;s an input, which validates if the rut is correct",
+  "description": "It&#39;s an input, which validates if the rut validator is correct",
   "main": "input-rut.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0"

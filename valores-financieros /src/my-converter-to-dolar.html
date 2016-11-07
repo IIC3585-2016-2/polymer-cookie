@@ -1,0 +1,64 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<!--
+`my-converter-to-dolar`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="my-converter-to-dolar">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <p> Convierte de Dólar (USD) a Peso Chileno (CLP)</p>
+    <input value="{{inputValue::input}}" type="number"/>
+    <p> [[resultValue]] </p>
+
+    <iron-ajax
+      auto
+      url="http://mindicador.cl/api/dolar"
+      handle-as="json"
+      on-response="dolar">
+    </iron-ajax>
+
+  </template>
+
+
+  <script>
+    Polymer({
+
+      is: 'my-converter-to-dolar',
+
+      properties: {
+        inputValue: {
+          type: Number,
+          value: 0,
+          observer: 'changeValue'
+        },
+        dolarValue: {
+          type: Number,
+        },
+        resultValue: {
+          type: Number,
+          value: 0,
+        }
+      },
+
+      dolar: function(data) {
+        console.log(data);
+        this.dolarValue = data.detail.root.__data__.response.serie["0"].valor;
+        console.log(this.dolarValue);
+      },
+
+      changeValue: function() {
+        this.resultValue = this.inputValue * this.dolarValue;
+      }
+
+    });
+  </script>
+</dom-module>

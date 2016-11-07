@@ -46,13 +46,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .drawer-list a {
         display: block;
-
         padding: 0 16px;
-
         text-decoration: none;
-
         color: var(--app-secondary-color);
-
         line-height: 40px;
       }
 
@@ -60,6 +56,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
 
         font-weight: bold;
+      }
+      .rut {
+        padding: 12px;
       }
     </style>
 
@@ -75,6 +74,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer>
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="input-rut" href="/input-rut">Input RUT</a>
+          <a name="converter-to-dolar" href="/converter-to-dolar">Peso a Dólar</a>
           <a name="valores-financieros" href="/valores-financieros">Valores Financieros</a>
           <a name="dolar" href="/dolar">Dolar</a>
           <a name="uf" href="/uf">UF</a>
@@ -103,6 +104,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-uf name="uf"></my-uf>
           <my-euro name="euro"></my-euro>
           <my-utm name="utm"></my-utm>
+          <my-input-rut name="input-rut" class="rut"></my-input-rut>
+          <my-converter-to-dolar name="converter-to-dolar" class="rut"></my-converter-to-dolar>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>

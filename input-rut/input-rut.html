@@ -2,7 +2,7 @@
 
 <!--
 `input-rut`
-It&#39;s an input, which validates if the rut is correct
+It&#39;s an input, which validates if the verifier digi rut is correct
 
 @demo demo/index.html
 -->
@@ -28,8 +28,8 @@ It&#39;s an input, which validates if the rut is correct
     </style>
     <div>
       <label>Rut</label>
-      <input value="{{prop1::input}}" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 75 || event.charCode == 107'/>
-      <h2>[[prop2]]</h2>
+      <input value="{{rut::input}}" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 75 || event.charCode == 107'/>
+      <h2>[[prop]]</h2>
 
     </div>
   </template>
@@ -40,37 +40,37 @@ It&#39;s an input, which validates if the rut is correct
       is: 'input-rut',
 
       properties: {
-        prop1: {
+        rut: {
           type: String,
           value: '',
           observer: 'validateRut'
         },
-        prop2: {
+        prop: {
           type: String,
           value: 'Ingresar rut'
         }
       },
 
       validateRut: function() {
-        var largo = this.prop1.length;
+        var largo = this.rut.length;
         var numbers = [9, 8, 7, 6, 5, 4, 9, 8, 7, 6]
-        this.prop2 = ""
+        this.prop = ""
         if (largo > 7) {
           var j = 0;
           var sum = 0;
           for (var i = largo-2; i >= 0; i--) {
-            sum += (this.prop1.charAt(i) * numbers[j++]);
+            sum += (this.rut.charAt(i) * numbers[j++]);
             var resto = sum%11;
-            if (resto == this.prop1.charAt(largo-1)){
-              this.prop2 = "Rut valido"
+            if (resto == this.rut.charAt(largo-1)){
+              this.prop = "Rut valido"
             }
             else if (resto == 10){
-              if (this.prop1.charAt(largo-1) == 'k' || this.prop1.charAt(largo-1) == 'K'){
-                this.prop2 = "Rut valido"
+              if (this.rut.charAt(largo-1) == 'k' || this.rut.charAt(largo-1) == 'K'){
+                this.prop = "Rut valido"
               }
             }
             else {
-              this.prop2 = "Rut no valido"
+              this.prop = "Rut no valido"
             }
           }
         }
